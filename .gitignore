@@ -1,0 +1,26 @@
+# Archivos y carpetas generados por Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Carpeta del entorno virtual
+venv/
+.venv
+
+# Archivo de registro de errores
+*.log
+
+# Archivo de configuración local
+.env
+
+# Carpeta de archivos de caché
+.cache/
+
+# Archivos de configuración específicos del editor
+.vscode/
+.idea/
+
+# Dependiendo de tu entorno de desarrollo, también puedes agregar:
+# .pycharm/
+# .vscode/

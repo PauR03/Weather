@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather by Pau Rius</title>
+</head>
+
+<body>
+    <script>
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+
+                console.log('Ubicación obtenida:', latitude, longitude);
+
+                // Aquí puedes realizar acciones adicionales con la ubicación obtenida
+            }, function (error) {
+                console.error('Error al obtener la ubicación:', error.message);
+            });
+        } else {
+            console.error('La geolocalización no es compatible en este navegador.');
+        }
+
+        fetch("https://2wcmxpbj-5000.euw.devtunnels.ms/getIP")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`)
+                }
+                return response.json()
+            })
+            .then(data => {
+                fetch(`https://ipinfo.io/${data.ip}?token=3cb0dad7af87b8`)
+                    .then(response => response.json())
+                    .then(data => console.log(data.city))
+                    .catch(error => console.error("Error:", error));
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            })
+    </script>
+</body>
+
+</html>
