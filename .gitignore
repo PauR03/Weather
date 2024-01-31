@@ -13,6 +13,7 @@ venv/
 
 # Archivo de configuración local
 .env
+config.ini
 
 # Carpeta de archivos de caché
 .cache/
