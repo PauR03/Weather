@@ -5,90 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather by Pau Rius</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 
 <body>
-    <script>
 
-        obtenerCiudad()
-        fetch("http://127.0.0.1:5000/getIP")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`)
-                }
-                return response.json()
-            })
-            .then(data => {
-                fetch(`https://ipinfo.io/${data.ip}?token=3cb0dad7af87b8`)
-                    .then(response => response.json())
-                    .then(data => console.log(data.city))
-                    .catch(error => console.error("Error:", error));
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            })
-
-        function quitarAcentos(cadena) {
-            return cadena.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        }
-
-        async function getCity({ latitude, longitude }) {
-            const configuracion = {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            };
-
-            try {
-                const response = await fetch(`http://127.0.0.1:5000/getCity?latitude=${latitude}&longitude=${longitude}`, configuracion);
-                const data = await response.json();
-
-                const city = data.plus_code.compound_code;
-                const citySeparada = city.split(" ");
-                const citySinPrimerElemento = citySeparada.slice(1);
-                const cityString = citySinPrimerElemento.join(' ');
-
-                return quitarAcentos(cityString);
-            } catch (error) {
-                console.error("Error:", error);
-                throw error;
-            }
-        }
-
-        function obtenerUbicacion() {
-            return new Promise((resolve, reject) => {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        position => {
-                            const latitude = position.coords.latitude;
-                            const longitude = position.coords.longitude;
-                            // console.log('Ubicación obtenida:', latitude, longitude);
-                            resolve({ latitude, longitude });
-                        },
-                        error => {
-                            console.error('Error al obtener la ubicación:', error.message);
-                            reject(error);
-                        }
-                    );
-                } else {
-                    console.error('La geolocalización no es compatible en este navegador.');
-                    reject(new Error('Geolocalización no compatible'));
-                }
-            });
-        }
-
-        async function obtenerCiudad() {
-            try {
-                const position = await obtenerUbicacion();
-                const resultado = await getCity(position);
-                console.log(resultado);
-            } catch (error) {
-                console.error("Error al obtener la ciudad:", error.message);
-            }
-        }
-
-    </script>
 </body>
 
 </html>
