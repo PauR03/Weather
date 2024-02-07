@@ -12,6 +12,7 @@ config.read('config.ini')
 apiKeyMaps = config['API']['googleMaps']
 apiKeyWeather = config['API']['weather']
 
+
 @app.route('/getIP', methods=['GET'])
 def obtener_ip():
     if 'HTTP_X_FORWARDED_FOR' in request.environ:
