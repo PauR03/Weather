@@ -25,3 +25,4 @@ config.ini
 # Dependiendo de tu entorno de desarrollo, también puedes agregar:
 # .pycharm/
 # .vscode/
+pruebas.py

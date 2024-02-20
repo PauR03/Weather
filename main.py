@@ -3,6 +3,9 @@ from flask_cors import CORS
 import requests
 import configparser
 
+import utils as u
+
+
 app = Flask(__name__)
 CORS(app)
 
@@ -33,7 +36,18 @@ def obtener_ciudad():
         else:
             # Imprimir un mensaje de error si la solicitud no fue exitosa
             return (f'Error en la solicitud: {response.status_code}')
-        
+
+@app.route('/getMoonPhase', methods=['GET'])
+def getMoonPhase():
+    porcentaje_iluminado = u.obtener_porcentaje_iluminacion()
+    fases_lunares = u.obtener_diccionario_fases_lunares(porcentaje_iluminado)
+
+    result_dict = {
+        "porcentaje_iluminacion": porcentaje_iluminado,
+        "fases_lunares": fases_lunares
+    }
+
+    return result_dict
 
 
 if __name__ == '__main__':
