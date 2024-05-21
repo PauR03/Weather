@@ -7,6 +7,7 @@ __pycache__/
 # Carpeta del entorno virtual
 venv/
 .venv
+env/
 
 # Archivo de registro de errores
 *.log

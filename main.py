@@ -3,8 +3,8 @@ from flask_cors import CORS
 import requests
 import configparser
 
+# Funciones que tengo en el archivo utils.py
 import utils as u
-
 
 app = Flask(__name__)
 CORS(app)
@@ -12,17 +12,17 @@ CORS(app)
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-apiKeyMaps = config['API']['googleMaps']
+apiOpenCage = config['API']['openCage']
 apiKeyWeather = config['API']['weather']
 apiKeyIpInfo = config['API']['ipInfo']
 
 @app.route('/getCity', methods=['GET'])
-def obtener_ciudad():
+def getUserCity():
     latitude = request.args.get('latitude', default=None)
     longitude = request.args.get('longitude', default=None)
 
     if latitude is not None and longitude is not None:
-        response = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json?latlng={latitude},{longitude}&key={apiKeyMaps}")
+        response = requests.get(f"https://api.opencagedata.com/geocode/v1/json?key={apiOpenCage}&q={latitude}%2C+{longitude}&pretty=1&no_annotations=1")
         if response.status_code == 200:
             return jsonify(response.json())
         else:
@@ -39,16 +39,15 @@ def obtener_ciudad():
 
 @app.route('/getMoonPhase', methods=['GET'])
 def getMoonPhase():
-    porcentaje_iluminado = u.obtener_porcentaje_iluminacion()
-    fases_lunares = u.obtener_diccionario_fases_lunares(porcentaje_iluminado)
+    porcentajeIluminado = u.obtener_porcentaje_iluminacion()
+    fasesLunares = u.obtener_diccionario_fases_lunares(porcentajeIluminado)
 
     result_dict = {
-        "porcentaje_iluminacion": porcentaje_iluminado,
-        "fases_lunares": fases_lunares
+        "porcentajeIluminado": porcentajeIluminado,
+        "fasesLunares": fasesLunares
     }
 
     return result_dict
-
 
 if __name__ == '__main__':
     app.run(debug=True)

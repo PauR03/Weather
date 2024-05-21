@@ -31,13 +31,9 @@ function main() {
         try {
             const response = await fetch(`http://127.0.0.1:5000/getCity?latitude=${latitude}&longitude=${longitude}`, configuracion);
             const data = await response.json();
+            const city = data.results[0].components.town
 
-            const city = data.plus_code.compound_code;
-            const citySeparada = city.split(" ");
-            const citySinPrimerElemento = citySeparada.slice(1);
-            const cityString = citySinPrimerElemento.join(' ');
-
-            return quitarAcentos(cityString);
+            return quitarAcentos(city);
         } catch (error) {
             console.error("Error:", error);
             throw error;
@@ -52,7 +48,7 @@ function main() {
                     position => {
                         const latitude = position.coords.latitude;
                         const longitude = position.coords.longitude;
-                        // console.log('Ubicación obtenida:', latitude, longitude);
+
                         resolve({ latitude, longitude });
                     },
                     error => {
