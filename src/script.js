@@ -72,11 +72,23 @@ function main() {
         }
 
         try {
-            const resultado = await getCity(position);
-            console.log(resultado);
+            const city = await getCity(position);
+            console.log(city);
+            obtenerTiempo({ city })
             // A partir de aqui ya puedo obtener la ciudad vastante bien
         } catch (error) {
             console.error("Error al obtener la ciudad:", error.message);
         }
+    }
+
+    async function obtenerTiempo({ city }) {
+        const response = await fetch(`http://localhost:5000/getWeather?city=${city}`);
+        if (!response.ok) {
+            const message = `An error has occured: ${response.status}`;
+            throw new Error(message);
+        }
+
+        const data = await response.json();
+        console.log(data.forecast.forecastday[0].hour);
     }
 }

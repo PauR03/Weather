@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
 import configparser
+from urllib.parse import quote
 
 # Funciones que tengo en el archivo utils.py
 import utils as u
@@ -48,6 +49,21 @@ def getMoonPhase():
     }
 
     return result_dict
+
+@app.route('/getWeather', methods=['GET'])
+def getWeather():
+    city = request.args.get('city', default=None)
+
+    if city is not None:
+        response = requests.get(f"http://api.weatherapi.com/v1/forecast.json?key={apiKeyWeather}&q={quote(city)}&days=1&aqi=no&alerts=no")
+    
+        if response.status_code == 200:
+            return jsonify(response.json())
+        else:
+            # Imprimir un mensaje de error si la solicitud no fue exitosa
+            return (f'Error en la solicitud: {response.status_code}')
+    else:
+        return (f'Error: No se ha proporcionado una ciudad')
 
 if __name__ == '__main__':
     app.run(debug=True)
