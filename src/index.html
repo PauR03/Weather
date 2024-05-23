@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather by Pau Rius</title>
 
-    <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,12 +15,95 @@
         rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./../tailwind.config.js"></script>
+    <script src="./tailwindConfiguration.js"></script>
 </head>
 
 <body class="font-iSans h-screen m-0 p-0 bg-bodyBg flex items-center justify-center">
-    <main class="w-5/6 h-5/6 bg-white rounded-6xl">
-        <h1 class="text-4xl">Cuarto creciente</h1>
+    <main class="w-5/6 h-5/6 rounded-6xl flex overflow-hidden">
+        <section class="w-1/3 h-full p-16 bg-white border-r border-r-neutral-400
+                        flex flex-col justify-between">
+            <!-- LOCATION OPTIONS -->
+            <div class="flex items-center justify-between">
+                <form id="formSearchCity" class="flex flex-row items-center">
+                    <label for="searchCity" class="mr-3 cursor-pointer">
+                        <img src="/public/search.svg" alt="Imagen de Lupa" class="max-w-none">
+                    </label>
+                    <input type="text" id="searchCity" placeholder="Busca una ciudad..."
+                        class="text-black text-xl outline-none placeholder:text-black">
+                </form>
+                <button class="p-2 bg-gray-100 rounded-full">
+                    <img src="/public/location.svg" alt="Imagen de Ubicación" class="max-w-none">
+                </button>
+            </div>
+
+            <!-- LOCATION WEATHER -->
+            <div class="mt-4 flex flex-col">
+                <!-- WEATHER ICON -->
+                <span id="weatherIcon" class="text-9xl">
+                    🌦️
+                </span>
+
+                <!-- WEATHER ºC -->
+                <span id="temperature" class="text-8xl">
+                    12ºC
+                </span>
+
+                <!-- DAY AND TIME -->
+                <div class="text-2xl mt-4">
+                    <span id="day">
+                        Lunes,
+                    </span>
+                    <span id="time" class="text-gray-300">
+                        12:00
+                    </span>
+                </div>
+                <hr class="my-4">
+
+                <table class="table-auto w-full text-xl">
+                    <tbody>
+                        <!-- SKY CONDITION -->
+                        <tr>
+                            <td class="w-1/4 min-w-14">
+                                ☁️
+                            </td>
+                            <td>
+                                Nublado
+                            </td>
+                        </tr>
+                        <!-- WEATHER PRECIPITATION -->
+                        <tr class="h-12 align-bottom">
+                            <td class="w-1/4 min-w-14">
+                                🌧️🚫
+                            </td>
+                            <td>
+                                Precip. - 0%
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="w-full h-40 rounded-2xl relative
+                    bg-city bg-center bg-cover align-bottom">
+
+                <!-- Blur for only background image -->
+                <div class="rounded-2xl absolute inset-0 bg-opacity-50 backdrop-filter backdrop-blur-[1.5px]"></div>
+                <span id="cityName"
+                    class="w-full h-full text-xl text-white text-center absolute flex items-center justify-center">
+                    Cornellà de Llobregat
+                </span>
+            </div>
+        </section>
+        <section class="w-2/3 h-full p-16 bg-gray-100">
+            <!-- HEADER -->
+            <div class="">
+                <span class="cursor-pointer">
+                    Hoy
+                </span>
+                <span class="ml-4 cursor-pointer">
+                    Semana
+                </span>
+            </div>
+        </section>
     </main>
 </body>
 
