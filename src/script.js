@@ -82,7 +82,7 @@ function main() {
     }
 
     async function obtenerTiempo({ city }) {
-        const response = await fetch(`http://localhost:5000/getWeather?city=${city}`);
+        const response = await fetch(`http://127.0.0.1:5000/getWeather?city=${city}`);
         if (!response.ok) {
             const message = `An error has occured: ${response.status}`;
             throw new Error(message);
