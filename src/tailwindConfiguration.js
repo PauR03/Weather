@@ -13,7 +13,10 @@ tailwind.config = {
             },
             backgroundImage: {
                 'city': "url('/public/city.webp')"
-            }
+            },
+            width: {
+                'custom-1/7': '14%',
+            },
         }
     }
 }
