@@ -1,5 +1,6 @@
 import ephem #Saber fase lunar
 from datetime import datetime, timedelta
+import unicodedata
 
 def obtener_porcentaje_iluminacion():
     fecha_actual = datetime.now().strftime("%Y/%m/%d")
@@ -55,3 +56,13 @@ def obtener_diccionario_fases_lunares(porcentaje_iluminado):
         porcentaje_iluminado = 1 if not MOONS["nueva"] and porcentaje_iluminado == 0 else porcentaje_iluminado
 
     return MOONS
+
+def quitar_acentos(texto):
+    # Normaliza el texto para separar caracteres base de sus acentos
+    texto_normalizado = unicodedata.normalize('NFD', texto)
+    # Filtra los caracteres no diacríticos (sin acentos)
+    texto_sin_acentos = ''.join(
+        caracter for caracter in texto_normalizado if unicodedata.category(caracter) != 'Mn'
+    )
+    # Normaliza de nuevo para evitar otros cambios en el texto
+    return unicodedata.normalize('NFC', texto_sin_acentos)
