@@ -21,8 +21,15 @@ DEVELOP = True
 
 @app.route('/getMoonPhase', methods=['GET'])
 def getMoonPhase():
-    porcentajeIluminado = u.obtener_porcentaje_iluminacion()
-    fasesLunares = u.obtener_diccionario_fases_lunares(porcentajeIluminado)
+    daysToAdvance = request.args.get('dayAdvance')
+
+    if daysToAdvance is not None and daysToAdvance.isdigit():
+        daysToAdvance = int(daysToAdvance)
+    else:
+        daysToAdvance = 0
+
+    porcentajeIluminado = u.obtener_porcentaje_iluminacion(daysToAdvance)
+    fasesLunares = u.obtener_diccionario_fases_lunares(porcentajeIluminado, daysToAdvance)
 
     result_dict = {
         "porcentajeIluminado": porcentajeIluminado,
