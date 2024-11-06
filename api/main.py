@@ -90,8 +90,6 @@ def getWeatherWeek():
         return jsonify({"error": 'Error al obtener la ciudad de la respuesta'}), 500
     except Exception as e:
         return jsonify({"error": f'Error inesperado'}), 500
-    
-
 
 if __name__ == '__main__':
     app.run(debug=True)
