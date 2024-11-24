@@ -17,6 +17,9 @@ tailwind.config = {
             width: {
                 'custom-1/7': '14%',
             },
+            height: {
+                'custom-1': '14%',
+            }
         }
     }
 }

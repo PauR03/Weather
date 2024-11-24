@@ -31,9 +31,6 @@
                     <input type="text" id="searchCity" placeholder="Busca una ciudad..."
                         class="text-black text-xl outline-none placeholder:text-black">
                 </form>
-                <button class="p-2 bg-gray-100 rounded-full">
-                    <img src="/public/location.svg" alt="Imagen de Ubicación" class="max-w-none">
-                </button>
             </div>
 
             <!-- LOCATION WEATHER -->
@@ -62,7 +59,7 @@
                 <table class="table-auto w-full text-xl">
                     <tbody>
                         <!-- SKY CONDITION -->
-                        <tr>
+                        <tr id="skyCondition">
                             <td class="w-1/4 min-w-14">
                                 ☁️
                             </td>
@@ -72,11 +69,11 @@
                         </tr>
                         <!-- WEATHER PRECIPITATION -->
                         <tr class="h-12 align-bottom">
-                            <td class="w-1/4 min-w-14">
+                            <td id="weatherPrecipitationIcon" class="w-1/4 min-w-14">
                                 🌧️🚫
                             </td>
                             <td>
-                                Precip. - 0%
+                                Precip. - <span id="weatherPrecipitation">0%</span>
                             </td>
                         </tr>
                     </tbody>
@@ -105,11 +102,11 @@
             </div>
 
             <!-- WEATHER SELECTOR -->
-            <ul class="mt-20 flex gap-2 max-w-full overflow-auto">
+            <ul class="mt-20 flex gap-2 max-w-full overflow-x-auto box-border" id="listOfHours">
                 <li
-                    class="min-w-20 w-custom-1/7 p-4 bg-white rounded-lg flex flex-col items-center justify-between gap-y-1.5 cursor-pointer">
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
                     <span class="timeWeatherHour text-xl">
-                        00:00
+                        01:00
                     </span>
                     <span class="timeWeatherIcon text-4xl">
                         🌦️
@@ -119,7 +116,19 @@
                     </span>
                 </li>
                 <li
-                    class="min-w-20 w-custom-1/7 p-4 bg-white rounded-lg flex flex-col items-center justify-between gap-y-1.5 cursor-pointer">
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        02:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
                     <span class="timeWeatherHour text-xl">
                         03:00
                     </span>
@@ -131,7 +140,31 @@
                     </span>
                 </li>
                 <li
-                    class="min-w-20 w-custom-1/7 p-4 bg-white rounded-lg flex flex-col items-center justify-between gap-y-1.5 cursor-pointer">
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        04:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        05:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
                     <span class="timeWeatherHour text-xl">
                         06:00
                     </span>
@@ -143,9 +176,9 @@
                     </span>
                 </li>
                 <li
-                    class="min-w-20 w-custom-1/7 p-4 bg-white rounded-lg flex flex-col items-center justify-between gap-y-1.5 cursor-pointer">
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
                     <span class="timeWeatherHour text-xl">
-                        00:00
+                        07:00
                     </span>
                     <span class="timeWeatherIcon text-4xl">
                         🌦️
@@ -155,9 +188,9 @@
                     </span>
                 </li>
                 <li
-                    class="min-w-20 w-custom-1/7 p-4 bg-white rounded-lg flex flex-col items-center justify-between gap-y-1.5 cursor-pointer">
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
                     <span class="timeWeatherHour text-xl">
-                        03:00
+                        08:00
                     </span>
                     <span class="timeWeatherIcon text-4xl">
                         🌦️
@@ -167,9 +200,9 @@
                     </span>
                 </li>
                 <li
-                    class="min-w-20 w-custom-1/7 p-4 bg-white rounded-lg flex flex-col items-center justify-between gap-y-1.5 cursor-pointer">
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
                     <span class="timeWeatherHour text-xl">
-                        06:00
+                        09:00
                     </span>
                     <span class="timeWeatherIcon text-4xl">
                         🌦️
@@ -179,9 +212,177 @@
                     </span>
                 </li>
                 <li
-                    class="min-w-20 w-custom-1/7 p-4 bg-white rounded-lg flex flex-col items-center justify-between gap-y-1.5 cursor-pointer">
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
                     <span class="timeWeatherHour text-xl">
-                        06:00
+                        10:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        11:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        12:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        13:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        14:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        15:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        16:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        17:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        18:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        19:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        20:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        21:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        22:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        23:00
+                    </span>
+                    <span class="timeWeatherIcon text-4xl">
+                        🌦️
+                    </span>
+                    <span class="timeWeatherTemperature text-lg">
+                        12º
+                    </span>
+                </li>
+                <li
+                    class="w-24 p-4 bg-white rounded-lg flex flex-col items-center justify-between shrink-0 gap-y-1.5 cursor-pointer select-none">
+                    <span class="timeWeatherHour text-xl">
+                        24:00
                     </span>
                     <span class="timeWeatherIcon text-4xl">
                         🌦️
@@ -194,32 +395,88 @@
 
             <!-- WEATHER HIGHLIGHTS -->
             <div class="mt-16 flex-1 flex flex-col">
-                <span class="text-black text-2xl">
-                    Destacados a las 01:00
+                <span class="text-black text-2xl mb-5">
+                    Destacados a las <span id="actualHour">00</span>
+                    <button id="resetHourButton" class="hidden">
+                        🔄
+                    </button>
                 </span>
                 <div class="flex-1 flex flex-wrap">
 
-                    <div class="w-2/3 h-full flex flex-wrap gap-2">
+                    <div class="w-2/3 h-auto flex flex-wrap gap-5">
 
                         <!-- UV INDEX -->
-                        <div id="uvIndex" class="w-5/12 bg-white rounded-2xl">
+                        <div class="w-5/12 min-w-48 bg-white rounded-2xl p-4 flex flex-col text-lg">
 
+                            <span class="text-gray-300">
+                                UV Index
+                            </span>
+                            <span id="uvIndexValue" class="text-5xl text-center">
+                                0
+                            </span>
                         </div>
 
                         <!-- WIND STATUS -->
-                        <div id="windStatus" class="w-5/12 bg-white rounded-2xl">
+                        <div class="w-5/12 min-w-48 bg-white rounded-2xl p-4 flex flex-col text-lg">
+                            <span class="text-gray-300">
+                                Viento
+                            </span>
+                            <div class="flex justify-center items-end">
+                                <span id="windStatusValue" class="text-5xl">
+                                    0
+                                </span>km/h
+
+                            </div>
                         </div>
 
                         <!-- HIMIDITY -->
-                        <div id="humitidy" class="w-5/12 bg-white rounded-2xl">
+                        <div class="w-5/12 min-w-48 bg-white rounded-2xl p-4 flex flex-col text-lg">
+                            <span class="text-gray-300">
+                                Humedad
+                            </span>
+                            <div class="flex justify-center items-end">
+                                <span id="humidityValue" class="text-5xl">
+                                    0
+                                </span>%
+                            </div>
                         </div>
 
                         <!-- VISIBILITY -->
-                        <div id="visibility" class="w-5/12 bg-white rounded-2xl">
+                        <div class="w-5/12 min-w-48 bg-white rounded-2xl p-4 flex flex-col text-lg">
+                            <span class="text-gray-300">
+                                Visibilidad
+                            </span>
+                            <div class="flex justify-center items-end">
+                                <span id="visibilityValue" class="text-5xl">
+                                    0
+                                </span>km
+                            </div>
+
                         </div>
                     </div>
 
-                    <div id="moonStatus" class="w-1/3 h-12 bg-red-600">
+                    <div id="moonStatus" class="w-1/3 h-auto p-4 bg-white rounded-2xl flex flex-col text-lg">
+                        <span class="text-gray-300">
+                            Fase lunar
+                        </span>
+                        <div class="h-full flex flex-col justify-evenly">
+                            <span id="moonStatusValue" class="text-8xl text-center">
+                                🌕
+                            </span>
+                            <div class="flex flex-col">
+                                <span id="phase" class="text-center">
+                                    Llena
+                                </span>
+                                <span class="text-center">
+                                    <span>
+                                        <span id="moonIlluminated">
+                                            100%
+                                        </span>
+                                    </span>
+                                    iluminada
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
